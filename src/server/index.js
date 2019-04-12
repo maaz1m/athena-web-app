@@ -3,6 +3,14 @@ const path = require('path');
 const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server);
+const admin = require("firebase-admin");
+
+const serviceAccount = require("./serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://athena-56ba2.firebaseio.com"
+});
 
 const PORT = process.env.PORT || 8080;
 
@@ -14,9 +22,6 @@ app.get('/', (req,res,next)=>{
 	res.sendFile(__dirname + './index.html')
 })
 
-// const server = express()
-//   .use((req, res) => res.sendFile(INDEX) )
-//   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 io.on('connection', (socket) => {
