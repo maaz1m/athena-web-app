@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import * as router from '../router.js'
+import TextField from '@material-ui/core/TextField'
 
 const styles = theme => ({
   main: {
@@ -21,9 +21,9 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
+      width: 250,
       marginLeft: 'auto',
-      marginRight: 'auto',
+      marginRight: 'auto'
     },
   },
   paper: {
@@ -46,14 +46,16 @@ const styles = theme => ({
   },
 });
 
-class Login extends React.Component{
+class SearchUni extends React.Component{
   constructor(props){
     super(props)
-    this.style = this.props.classes
+    this.classes = this.props.classes
     this.socket = this.props.socket
+    this.filter = this.props.filter
     this.state = {
-      email: '',
-      password: ''
+      city: '',
+      minsat: '',
+      maxfee: ''
     } 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -62,49 +64,59 @@ class Login extends React.Component{
     this.setState({[event.target.name]: event.target.value})
   }
   handleSubmit(event){
-    this.socket.emit('login', this.state)
+    this.filter(this.state)
+    event.preventDefault() 
+    // this.socket.emit('SearchUni', this.state)
   }
   render(){
       return (
-    <main className={this.style.main}>
+    <main className={this.classes.main}>
       <CssBaseline />
-      <Paper className={this.style.paper}>
-        <Avatar className={this.style.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Log In
-        </Typography>
-        <form className={this.style.form}>
+      <Paper className={this.classes.paper}>
+        <form className={this.classes.form}>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input onChange = {this.handleChange} id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input onChange = {this.handleChange} name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            <TextField
+            id="standard-search"
+            label = "City"
+            type = "search"
+            name = "city"
+            className = {this.classes.textField}
+            margin="normal"
+            onChange = {this.handleChange}
           />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <TextField
+            id="standard-search"
+            label="Maximum Fee"
+            type="search"
+            name = "maxfee"
+            className={this.classes.textField}
+            margin="normal"
+            onChange = {this.handleChange}
+            />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <TextField
+            id="standard-search"
+            label="Minimum SAT"
+            type="search"
+            name = "minsat"
+            className={this.classes.textField}
+            margin="normal"
+            onChange = {this.handleChange}
+          />
+          </FormControl>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             onClick= {this.handleSubmit}
-            className={this.style.submit}
+            className={this.classes.submit}
           >
-            Log In
+            Filter Universities
           </Button>
-          <Typography variant="h6">
-          
-          Or sign up <a href = "#" onClick = {()=>{
-            //this.socket.emit('signup-page')
-            router.renderSignupPage()
-          }}>here</a>
-        </Typography>
         </form>
       </Paper>
     </main>
@@ -113,8 +125,8 @@ class Login extends React.Component{
   }
 }
 
-Login.propTypes = {
+SearchUni.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(SearchUni);

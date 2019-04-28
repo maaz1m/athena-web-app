@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import socket from '../socket.js'
 
 const styles = theme => ({
   main: {
@@ -34,7 +35,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: 'purple'//theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -45,49 +46,72 @@ const styles = theme => ({
   },
 });
 
-function SignIn(props) {
-  const { classes } = props;
-
-  return (
-    <main className={classes.main}>
+class Signup extends React.Component{
+  constructor(props){
+    super(props)
+    this.style = this.props.classes
+    this.socket = this.props.socket
+    this.state = {
+      email: '',
+      displayName: '',
+      password: '',
+      phoneNumber: ''
+    } 
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleChange(event){
+    this.setState({[event.target.name]: event.target.value})
+  }
+  handleSubmit(event){
+    socket.emit('signup', this.state)
+    event.preventDefault()
+    //console.log(this.state, 'submitted')
+  }
+  render(){
+      return (
+    <main className={this.style.main}>
       <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <Paper className={this.style.paper}>
+        <Avatar className={this.style.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign Up
         </Typography>
-        <form className={classes.form}>
+        <form className={this.style.form}>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="displayName">Name</InputLabel>
+            <Input onChange = {this.handleChange} id="displayName" name="displayName" autoComplete="displayName" autoFocus />
+          </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <Input onChange = {this.handleChange} id="email" name="email" autoComplete="email" autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
+            <Input onChange = {this.handleChange} name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            onClick= {this.handleSubmit}
+            className={this.style.submit}
           >
-            Sign in
+            Sign up
           </Button>
         </form>
       </Paper>
     </main>
-  );
+    )
+
+  }
 }
 
-SignIn.propTypes = {
+Signup.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(Signup);
