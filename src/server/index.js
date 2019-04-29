@@ -28,8 +28,8 @@ var mentors = {}
 io.on('connection', (socket) => {
   console.log('User connected');
   socket.on('disconnect', () =>{
-    console.log('User disconnected'));
-  }
+    console.log('User disconnected');
+  })
 });
 
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`))
