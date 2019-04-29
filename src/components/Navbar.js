@@ -19,6 +19,7 @@ import HomeGroupIcon from '@material-ui/icons/Search';
 import MajorIcon from '@material-ui/icons/School';
 import LogOutIcon from '@material-ui/icons/SubdirectoryArrowLeft';
 import * as router from '../router'
+import firebase from '../firebase'
 
 const styles = {
   avatar: {
@@ -39,7 +40,11 @@ const styles = {
   }
 };
 
-
+const signOut = ()=>{
+  firebase.auth().signOut().then(()=>{
+    router.renderLoginPage()
+  })
+}
 
 class Navbar extends React.Component{
   constructor(props){
@@ -78,7 +83,7 @@ class Navbar extends React.Component{
         </List>
         <Divider />
         <List>
-          <ListItem button key={'Log Out'}>
+          <ListItem button key={'Log Out'} onClick = {signOut}>
             <ListItemIcon><LogOutIcon /></ListItemIcon>
             <ListItemText primary={'Log Out'} />
           </ListItem>

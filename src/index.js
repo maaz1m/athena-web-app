@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 import * as router from './router'
 import * as serviceWorker from './serviceWorker';
 import socket from './socket'
+import 'typeface-roboto'
 
-// document.body.style = 'background: purple;';
+document.body.style = 'background: #d4ebf2;';
+// document.body.style = `background-image: ${bg};`;
 
 const root = document.getElementById('root');
 
 router.renderLoginPage()
-socket.on('HomePage', ()=>{
-	router.renderHomePage()
-})
+// socket.on('HomePage', ()=>{
+// 	router.renderHomePage()
+// })
 
 
 // If you want your app to work offline and load faster, you can change

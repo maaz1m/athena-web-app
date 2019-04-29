@@ -1,12 +1,21 @@
 import React from 'react';
 import Question from '../components/Question'
+import {
+  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+} from 'recharts';
 import Navbar from '../components/Navbar'
+import Grid from '@material-ui/core/Grid'
+import * as router from '../router.js'
+
+const half = {
+	'width': '50%'
+}
 
 var questions = [
-	{'ques': 'I especially love working with children.', 'options': ['Yes', 'No', 'Not sure']},
+	{'ques': 'I especially love working with children.', 'options': ['Yes', 'No']},
 	{'ques': 'I am interested in law, debate, government, and politics.', 'options': ['Yes', 'No']},
 	{'ques': 'I have a strong interest and ability in visual art.', 'options': ['Yes', 'No']},
-	{'ques': 'I am always reading a book or writing my own stories.', 'options': ['Yes', 'No', 'Just reading']},
+	{'ques': 'I am always reading a book or writing my own stories.', 'options': ['Yes', 'No']},
 	{'ques': 'I like to experiment with better and faster ways of doing things.', 'options': ['Yes', 'No']},
 	{'ques': 'I am concerned about the state of the environment and want to work to improve it.', 'options': ['Yes', 'No']},
 	{'ques': 'I am interested in helping bodies heal and rehabilitate.', 'options': ['Yes', 'No']},
@@ -32,26 +41,80 @@ var questions = [
 	{'ques': 'I love sports', 'options': ['Yes', 'No']}
 ]
 
+const RadarMap = (props) => {
+	return (
+		<RadarChart cx={300} cy={250} outerRadius={150} width={550} height={500} data={props.data}>
+	        <PolarGrid />
+	        <PolarAngleAxis dataKey="name" />
+	        <PolarRadiusAxis domain ={[0,5]}/>
+	        <Radar name="User" dataKey="pts" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+		</RadarChart>
+	)
+
+}
+
+const getHighest = majors => {
+	var max = 0
+	var major = ''
+	for (var i = 0; i < majors.length; i++) {
+		if(majors[i].pts > max){
+			max = majors[i].pts
+			major = majors[i].name
+		}	
+	}
+	return major
+}
 
 class QuizPage extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			'question': questions[0]
+			question: questions[0],
+		 	majorPts: [
+		  	{name: 'Engineering', pts: 1},
+			{name: 'Medicine', pts: 1},
+			{name: 'Business', pts: 1},
+			{name: 'Accounting', pts: 1},
+			{name: 'Finance', pts: 1},
+			{name: 'Economics', pts: 1},
+			{name: 'Natural Science', pts: 1},
+			{name: 'Humanities', pts: 1},
+			{name: 'Law', pts: 1}
+			]
 		}
+		
 		this.index = 0
 	}
 	render(){
 		return (
 			<div>
 				<Navbar/>
-				<Question question = {this.state.question} change = {(selected)=>{
-					this.index+=1
-					this.setState({'question': questions[this.index]})
-				}}/>
+				<Grid container = {true}>
+					<Grid item = {true} xs = {6}>
+						<Question question = {this.state.question} change = {(selected)=>{
+							if(selected){
+								if(this.index >= questions.length){
+									alert('Athena has chosen ' + getHighest(this.state.majorPts) + ' as an appropriate major for you')
+									router.renderHomePage()
+									return
+								} else{
+									this.index+=1
+									var copyOf = this.state.majorPts 
+									var majorIndex = Math.floor(Math.random()*8)
+									copyOf[majorIndex].pts += 1;
+									this.setState({'question': questions[this.index], 'majorPts': copyOf})
+								}
+							}
+						}}/>
+					</Grid>
+					<Grid item = {true} xs = {6} >
+						<RadarMap data = {this.state.majorPts.slice()} />
+					</Grid>
+				</Grid>	
 			</div>
 		)
 	}
 }
+
 
 export default QuizPage

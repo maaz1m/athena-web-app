@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto'
@@ -46,12 +46,14 @@ const styles = theme => ({
   },
 });
 
-class RadioButtonsGroup extends React.Component {
+class Question extends React.Component {
   state = {};
 
   handleChange = event => {
-    this.setState({ value: event.target.value });
-    this.props.change(event.target.value)
+    if (this.state === {}){
+      this.setState({ value: event.target.value });
+    }
+      this.props.change(event.target.value)
 
   };
 
@@ -83,8 +85,8 @@ class RadioButtonsGroup extends React.Component {
   }
 }
 
-RadioButtonsGroup.propTypes = {
+Question.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RadioButtonsGroup);
+export default withStyles(styles)(Question);

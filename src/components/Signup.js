@@ -12,7 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import socket from '../socket.js'
+import socket from '../socket'
+import firebase from '../firebase'
+import * as router from '../router'
 
 const styles = theme => ({
   main: {
@@ -35,7 +37,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: 'purple'//theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -55,7 +57,9 @@ class Signup extends React.Component{
       email: '',
       displayName: '',
       password: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      universities: '',
+      major: ''
     } 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -64,7 +68,24 @@ class Signup extends React.Component{
     this.setState({[event.target.name]: event.target.value})
   }
   handleSubmit(event){
-    socket.emit('signup', this.state)
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then( () =>{
+          var user = firebase.auth().currentUser
+          user.updateProfile({
+            displayName: this.state.displayName
+          })
+          firebase.database().ref('user/'+ user.uid).set(this.state)
+          router.renderHomePage()
+        }
+      )
+      .catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(error.message)
+      });
+
+
     event.preventDefault()
     //console.log(this.state, 'submitted')
   }

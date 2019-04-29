@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper'	;
+import Typography from '@material-ui/core/Typography'	;
 import Grid from '@material-ui/core/Grid'	;
 import Navbar from '../components/Navbar'
 import Notifications from '../components/Notifications'
 import Calendar from '../components/Calendar'
+import firebase from '../firebase'
 
 const styles = theme => ({
   root: {
@@ -15,7 +17,7 @@ const styles = theme => ({
     marginRight: 'auto'
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: '15px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'left',
@@ -23,6 +25,10 @@ const styles = theme => ({
   },
   calendar:{
     marginTop: theme.spacing.unit * 8,
+  },
+  greeting:{
+    marginTop: '5%',
+    marginLeft: '35%'
   }
 });
 
@@ -30,13 +36,17 @@ const styles = theme => ({
 class HomePage extends React.Component{
 	constructor(props){
 		super(props)
+		this.name = firebase.auth().currentUser.displayName
 	}
 	render(){
 		const { classes } = this.props
 		return (
 			<div>
 		    	<Navbar/>
-				<Grid container = {true}>
+					<Typography className = {classes.greeting}component="h2" variant="h3">
+	        			Hi, {this.name ? this.name.split(' ')[0] : ''}
+	      			</Typography>
+	      			<Grid container = {true}>
 					<Grid item = {true} xs = {12}>
 						<div className={classes.root}>
 						<Paper className={classes.paper}>

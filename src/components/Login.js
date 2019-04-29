@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as router from '../router.js'
+import firebase from '../firebase'
 
 const styles = theme => ({
   main: {
@@ -35,7 +36,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: 'purple'//theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -62,7 +63,15 @@ class Login extends React.Component{
     this.setState({[event.target.name]: event.target.value})
   }
   handleSubmit(event){
-    this.socket.emit('login', this.state)
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(()=>{
+        router.renderHomePage()
+      })
+      .catch(error =>{
+        alert(error.message)
+      })
+
+    event.preventDefault()
   }
   render(){
       return (

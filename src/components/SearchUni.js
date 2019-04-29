@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
 
 const styles = theme => ({
   main: {
@@ -54,8 +55,8 @@ class SearchUni extends React.Component{
     this.filter = this.props.filter
     this.state = {
       city: '',
-      minsat: '',
-      maxfee: ''
+      minSAT: '',
+      maxFee: ''
     } 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -78,7 +79,7 @@ class SearchUni extends React.Component{
             <TextField
             id="standard-search"
             label = "City"
-            type = "search"
+            type = "text"
             name = "city"
             className = {this.classes.textField}
             margin="normal"
@@ -88,20 +89,21 @@ class SearchUni extends React.Component{
           <FormControl margin="normal" required fullWidth>
             <TextField
             id="standard-search"
-            label="Maximum Fee"
-            type="search"
-            name = "maxfee"
+            label="Maximum Fee per year"
+            type="number"
+            name = "maxFee"
             className={this.classes.textField}
             margin="normal"
             onChange = {this.handleChange}
+            InputProps ={{startAdornment: <InputAdornment position = 'start'> Rs </InputAdornment>}}
             />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <TextField
             id="standard-search"
             label="Minimum SAT"
-            type="search"
-            name = "minsat"
+            type="number"
+            name = "minSAT"
             className={this.classes.textField}
             margin="normal"
             onChange = {this.handleChange}
