@@ -15,9 +15,10 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
-import lums from './lums.jpg';
-import iba from './iba.jpg';
-import UCP from './UCP.jpg';
+import lums from '../images/lums.jpg';
+import iba from '../images/iba.jpg';
+import UCP from '../images/UCP.jpg';
+import bg from '../images/bg.jpg';
 
 
 const styles = theme => ({
@@ -80,6 +81,11 @@ const styles = theme => ({
 		boxShadow: '5' ,
 		boxShadow: '10',
 	},
+	paperContainer: {
+        backgroundImage: `url(${bg})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100%',
+    },
 
 });
 
@@ -115,9 +121,10 @@ class HomePage extends React.Component{
 	render(){
 		const { classes } = this.props
 		return (
+			<Paper className={classes.paperContainer}>
 			<div>
 		    	<Navbar/>
-					<Typography className = {classes.greeting}component="h2" variant="h3">
+					<Typography className = {classes.greeting} component="h2" variant="h3">
 	        			Hi, {this.name ? this.name.split(' ')[0] : ''}
 	      			</Typography>
 	      			<Grid container = {true}>
@@ -162,7 +169,7 @@ class HomePage extends React.Component{
 			</div>
 		
 		
-    	
+    	</Paper>
 		)
 	}
 }

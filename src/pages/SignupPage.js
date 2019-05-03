@@ -7,6 +7,13 @@ import Fade from '@material-ui/core/Fade'
 import Slide from '@material-ui/core/Slide'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper' ;
+
+
+import lums from '../images/lums.jpg';
+import iba from '../images/iba.jpg';
+import UCP from '../images/UCP.jpg';
+import bg from '../images/bg.jpg';
 
 const styles = theme => ({
 	heading:{
@@ -20,7 +27,13 @@ const styles = theme => ({
 		  marginRight: 'auto',
 		},
 		marginTop: '25%'
-	}
+	},
+		paperContainer: {
+        backgroundImage: `url(${bg})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100%',
+    },
+
 });
 
 
@@ -32,6 +45,8 @@ class SignupPage extends React.Component{
 	render(){
 		const { classes } = this.props
 		return (
+			<div> 
+			<Paper className={classes.paperContainer}>
 			<Grid container = {true}>
 				<Grid item = {true} xs = {6}>
 					<Typography className = {classes.heading}component="h2" variant="h1">
@@ -44,6 +59,8 @@ class SignupPage extends React.Component{
 					</Fade>
 				</Grid>
 			</Grid>
+			</Paper>
+			</div>
 		)
 	}
 }
