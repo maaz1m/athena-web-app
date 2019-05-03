@@ -35,11 +35,11 @@ const styles = theme => ({
     padding: '1px',
   },
   paperUni: {
-    display: 'flex',
+   
     alignItems: 'left',
     padding: '1px',
-    textShadow: '2px',
-    background: 'Grey',
+    boxShadow: '2px 2px grey',
+   
   },
   calendar:{
     marginTop: theme.spacing.unit * 8,
@@ -129,9 +129,11 @@ class HomePage extends React.Component{
 						</div>
 						<div  className={classes.roottt} >
 							<div className={classes.paperUni}>	
-								<Typography variant="h5" align='center' color=''>
-					        			Partnered Universities
-					      		</Typography>
+								<Paper>
+									<Typography variant="h5" align='center' style={{ color: '64b5f6'}}>
+						        			Partnered Universities
+						      		</Typography>
+					      		</Paper>
 					      	</div>
 
 					      <GridList className={classes.gridList} cellHeight={'auto'} col={1} row={1}>
