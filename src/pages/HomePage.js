@@ -34,6 +34,13 @@ const styles = theme => ({
     alignItems: 'left',
     padding: '1px',
   },
+  paperUni: {
+    display: 'flex',
+    alignItems: 'left',
+    padding: '1px',
+    textShadow: '2px',
+    background: 'Grey',
+  },
   calendar:{
     marginTop: theme.spacing.unit * 8,
   },
@@ -42,18 +49,17 @@ const styles = theme => ({
     marginLeft: '35%'
   },
   roottt: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+  	width: '70%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: '5%',
   
   },
   gridList: {
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
-    alignItems: 'baseline',
+  
     justify: 'space-evenly',
   },
   title: {
@@ -63,6 +69,18 @@ const styles = theme => ({
      color: theme.palette.primary.light,
     //  'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
+  pictures: {
+  position: 'absolute',
+  top: '370px',
+
+	},
+	uniimg: {
+		height: '300px',
+		width: '600px',
+		boxShadow: '5' ,
+		boxShadow: '10',
+	},
+
 });
 
 
@@ -93,7 +111,6 @@ const tileData = [
 class HomePage extends React.Component{
 	constructor(props){
 		super(props)
-		this.name = firebase.auth().currentUser.displayName
 	}
 	render(){
 		const { classes } = this.props
@@ -110,35 +127,36 @@ class HomePage extends React.Component{
 							<Notifications/>
 						</Paper>
 						</div>
+						<div  className={classes.roottt} >
+							<div className={classes.paperUni}>	
+								<Typography variant="h5" align='center' color=''>
+					        			Partnered Universities
+					      		</Typography>
+					      	</div>
+
+					      <GridList className={classes.gridList} cellHeight={'auto'} col={1} row={1}>
+
+					        {tileData.map(tile => (
+					          <GridListTile key={tile.img}>
+					            <img className={classes.uniimg} src={tile.img} alt={tile.title} />
+					            <GridListTileBar
+					              title={tile.title}
+					              classes={{
+					                root: classes.titleBar,
+					                title: classes.title,
+					              }}
+					              // actionIcon={
+					              //   <IconButton>
+					              //     <StarBorderIcon className={classes.title} />
+					              //   </IconButton>
+					              // }
+					            />
+					          </GridListTile>
+					        ))}
+					      </GridList>
+				    	</div>
 					</Grid>
 				</Grid>
-				<div  className={classes.roottt} >
-			<div>	
-				<Typography component="h2" variant="h3">
-	        			Partnered Universities
-	      		</Typography>
-	      	</div>
-	      <GridList className={classes.gridList} rows={2.5} cols={2.5}>
-
-	        {tileData.map(tile => (
-	          <GridListTile key={tile.img}>
-	            <img src={tile.img} alt={tile.title} />
-	            <GridListTileBar
-	              title={tile.title}
-	              classes={{
-	                root: classes.titleBar,
-	                title: classes.title,
-	              }}
-	              actionIcon={
-	                <IconButton>
-	                  <StarBorderIcon className={classes.title} />
-	                </IconButton>
-	              }
-	            />
-	          </GridListTile>
-	        ))}
-	      </GridList>
-    	</div>
 			</div>
 		
 		
