@@ -50,13 +50,13 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 8,
   },
   greeting:{
-    marginTop: '5%',
+    marginTop: '3%',
     marginLeft: '15%',
     fontWeight: 'bold',
     color: 'white',
     textShadow: '2px 2px black',
     width: "27%",
-    paddingTop: "120px",
+    paddingTop: "90px",
     letterSpacing: "4px",
     lineSpacing: "40px",
     lineHeight: "60px",
@@ -91,6 +91,8 @@ const styles = theme => ({
         backgroundImage: `url(${bg})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: '100%',
+        paddingTop: theme.spacing.unit * 2,
+    	paddingBottom: theme.spacing.unit * 2,
     },
     button: {
     //margin: theme.spacing.unit,
@@ -99,7 +101,7 @@ const styles = theme => ({
     align: 'center',
     size: 'large',
     margin: '100px',
-    top: '-110px',
+    top: '-130px',
     left: '60px',
   	},
 
