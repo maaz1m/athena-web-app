@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import QuizPage from './pages/QuizPage'
+import LandingPage from './pages/LandingPage'
 import Loading from './components/Loading'
 import SearchUniversityPage from './pages/SearchUniversityPage'
 import HomePage from './pages/HomePage'
@@ -37,5 +38,8 @@ const renderLoginPage = ()=>{
 const renderQuizPage = ()=>{
 	ReactDOM.render(<QuizPage/> , container)
 }
+const renderLandingPage = ()=>{
+	ReactDOM.render(<LandingPage/> , container)
+}
 
-export {renderSignupPage, renderLoginPage, renderSearchUniversityPage, renderQuizPage, renderHomePage}
+export {renderSignupPage, renderLoginPage, renderSearchUniversityPage, renderQuizPage, renderHomePage, renderLandingPage}

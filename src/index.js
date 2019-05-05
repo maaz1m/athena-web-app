@@ -6,12 +6,14 @@ import socket from './socket'
 import 'typeface-roboto'
 import lums from './lums.jpg';
 
-document.body.style = 'background: url(https://www.booksoftitans.com/assets/uploads/2017/11/all-suggested-books-tim-ferriss-podcast.jpg)';
+
+
+document.body.style = 'background: no-repeat';
 // document.body.style = `background-image: ${bg};`;
 
 const root = document.getElementById('root');
 
-router.renderHomePage()
+router.renderLandingPage()
 // socket.on('HomePage', ()=>{
 // 	router.renderHomePage()
 // })
