@@ -7,12 +7,7 @@ import firebase from 'firebase'
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper' ;
 import { withStyles } from '@material-ui/core/styles';
-
-
-import lums from '../images/lums.jpg';
-import iba from '../images/iba.jpg';
-import UCP from '../images/UCP.jpg';
-import bg from '../images/bg.jpg';
+import Feedback from '../components/Feedback'
 
 const copy = (ob)=>{
 	return JSON.parse(JSON.stringify(ob))
@@ -32,66 +27,7 @@ const styles = theme => ({
     alignItems: 'left',
     padding: '1px',
   },
-  paperUni: {
-   
-    alignItems: 'left',
-    padding: '1px',
-    boxShadow: '2px 2px grey',
-   
-  },
-  calendar:{
-    marginTop: theme.spacing.unit * 8,
-  },
-  greeting:{
-    marginTop: '5%',
-    marginLeft: '35%'
-  },
-  roottt: {
-    width: '70%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: '5%',
-  
-  },
-  gridList: {
-    flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
-  
-    justify: 'space-evenly',
-  },
-  title: {
-    color: theme.palette.primary.light,
-  },
-  titleBar: {
-     color: theme.palette.primary.light,
-    //  'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
-  pictures: {
-  position: 'absolute',
-  top: '370px',
-
-  },
-  uniimg: {
-    height: '300px',
-    width: '600px',
-    boxShadow: '5' ,
-    boxShadow: '10',
-  },
-  paperContainer: {
-        backgroundImage: `url(${bg})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100%',
-    },
-
-});
-// const filterUniversities = args => {
-// 	var copyOfData = copy(obj)
-// 	for(var key in copyOfData){
-// 		if(copyOfData[].minSAT)
-// 	}
-// }
-
+})
 class SearchUniversityPage extends React.Component{
 	constructor(props){
 		super(props)
@@ -103,18 +39,19 @@ class SearchUniversityPage extends React.Component{
       console.log(error)
     })
 		this.state = {
-			data: this.allUnis
+			data: this.allUnis,
+      open: false
 		}
 	}
 	render(){
     const { classes } = this.props
 		return (
-      <Paper className={classes.paperContainer}>
 			<div >
 				<Navbar/>
 				<Grid container = {true}>
 					<Grid item = {true} xs={4}>
-						<SearchUni filter = {(args) =>{
+						<SearchUni
+            filter = {(args) =>{
 							var copyOfData = copy(this.allUnis)
               var minSAT = parseInt(args.minSAT)
               var maxFee = parseInt(args.maxFee)
@@ -135,22 +72,30 @@ class SearchUniversityPage extends React.Component{
                 }
               }
 							this.setState({data: copyOfData})
-						}} />				
+						}}
+            reset = {()=>{
+                this.setState({data: this.allUnis})
+              }
+            }
+            />				
 					</Grid>
 					<Grid item = {true} xs={8}>
 						<UniTable data = {this.state.data} add = { id =>{
-                this.setState({data: this.allUnis})
+                var data = this.state.data
+                delete data[id]
+                this.setState({data: data})
                 var user = firebase.auth().currentUser
                 var uni = {}
                 uni[id] = this.allUnis[id]
                 firebase.database().ref('user/'+ user.uid + '/universities').set(uni)
                 delete this.allUnis[id]
+                this.setState({open: true})
               }
             }/>
 					</Grid>
 				</Grid>
+        <Feedback open = {this.state.open} msg = 'Added to favourites'/>
 			</div>
-      </Paper>
 		)
 	}
 }

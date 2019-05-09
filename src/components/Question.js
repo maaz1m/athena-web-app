@@ -21,7 +21,7 @@ const styles = theme => ({
     marginRight: 'auto'
   },
   formControl: {
-    margin: theme.spacing.unit * 3,
+    margin: theme.spacing.unit * 3
   },
   main: {
     width: 'auto',
@@ -35,6 +35,7 @@ const styles = theme => ({
     },
   },
   paper: {
+    opacity: '0.9',
     marginTop: theme.spacing.unit * 8,
     display: 'flex',
     flexDirection: 'column',

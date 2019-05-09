@@ -9,39 +9,18 @@ import * as router from '../router.js'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper' ;
-import lums from '../images/lums.jpg';
-import iba from '../images/iba.jpg';
-import UCP from '../images/UCP.jpg';
-import bg from '../images/bg.jpg';
 
 const half = {
 	'width': '50%'
 }
 
 const styles = theme => ({
-	heading:{
-		width: 'auto',
-		display: 'block', // Fix IE 11 issue.
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		[theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-		  width: 400,
-		  marginLeft: 'auto',
-		  marginRight: 'auto',
-		},
-		marginTop: '25%'
-	},
-		paperContainer: {
-        backgroundImage: `url(${bg})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100%',
-    },
 
 });
 
 
 var questions = [
-	{'ques': 'I especially love working with children.', 'options': ['Yes', 'No']},
+	{'ques': 'I especially love working with children.', 'options': ['Yes', 'No', 'Maybe', 'lol', 'not maybe']},
 	{'ques': 'I am interested in law, debate, government, and politics.', 'options': ['Yes', 'No']},
 	{'ques': 'I have a strong interest and ability in visual art.', 'options': ['Yes', 'No']},
 	{'ques': 'I am always reading a book or writing my own stories.', 'options': ['Yes', 'No']},
@@ -118,7 +97,6 @@ class QuizPage extends React.Component{
 		const { classes } = this.props
 		return (
 			<div>
-			<Paper className={classes.paperContainer}>
 				<Navbar/>
 				<Grid container = {true}>
 					<Grid item = {true} xs = {6}>
@@ -142,7 +120,6 @@ class QuizPage extends React.Component{
 						<RadarMap data = {this.state.majorPts.slice()} />
 					</Grid>
 				</Grid>	
-				</Paper>
 			</div>
 		)
 	}

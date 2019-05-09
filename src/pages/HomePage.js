@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography'	;
 import Grid from '@material-ui/core/Grid'	;
 import Navbar from '../components/Navbar'
 import Notifications from '../components/Notifications'
-import Calendar from '../components/Calendar'
+import YourUniversities from '../components/YourUniversities'
+import MyCalendar from '../components/MyCalendar'
 import firebase from '../firebase'
 
 import GridList from '@material-ui/core/GridList';
@@ -23,69 +24,25 @@ import bg from '../images/bg.jpg';
 
 const styles = theme => ({
   root: {
-    width: '30%',
+    width: '90%',
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto'
   },
   paper: {
-    marginTop: '15px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'left',
     padding: '1px',
   },
-  paperUni: {
-   
-    alignItems: 'left',
-    padding: '1px',
-    boxShadow: '2px 2px grey',
-   
-  },
   calendar:{
     marginTop: theme.spacing.unit * 8,
   },
   greeting:{
-    marginTop: '5%',
+    marginTop: '2%',
+    marginBottom: '10px',
     marginLeft: '35%'
   },
-  roottt: {
-  	width: '70%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: '5%',
-  
-  },
-  gridList: {
-    flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
-  
-    justify: 'space-evenly',
-  },
-  title: {
-    color: theme.palette.primary.light,
-  },
-  titleBar: {
-     color: theme.palette.primary.light,
-    //  'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
-  pictures: {
-  position: 'absolute',
-  top: '370px',
-
-	},
-	uniimg: {
-		height: '300px',
-		width: '600px',
-		boxShadow: '5' ,
-		boxShadow: '10',
-	},
-	paperContainer: {
-        backgroundImage: `url(${bg})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100%',
-    },
 
 });
 
@@ -93,23 +50,6 @@ const styles = theme => ({
 
 
 
-const tileData = [
-{
-  img: lums,
-  title: 'LUMS',
-  
-},
-	 {
-  img: UCP,
-  title: 'UCP',
-
-},
- {
-  img: iba,
-  title: 'IBA',
-},
-
-];
 
 
 
@@ -121,55 +61,35 @@ class HomePage extends React.Component{
 	render(){
 		const { classes } = this.props
 		return (
-			<Paper className={classes.paperContainer}>
 			<div>
 		    	<Navbar/>
-					<Typography className = {classes.greeting} component="h2" variant="h3">
-	        			Hi, {this.name ? this.name.split(' ')[0] : ''}
-	      			</Typography>
-	      			<Grid container = {true}>
-					<Grid item = {true} xs = {12}>
+				<Typography className = {classes.greeting} component="h2" variant="h3">
+        			Hi, {this.name ? this.name.split(' ')[0] : ''}
+      			</Typography>
+      			<Grid container = {true}>
+					<Grid item = {true} xs = {4}>
+
 						<div className={classes.root}>
-						<Paper className={classes.paper}>
-							<Notifications/>
-						</Paper>
+					    	<Typography variant = 'h6' >  Your Universities </Typography>
+							<YourUniversities/>
 						</div>
-						<div  className={classes.roottt} >
-							<div className={classes.paperUni}>	
-								<Paper>
-									<Typography variant="h5" align='center' style={{ color: '64b5f6'}}>
-						        			Partnered Universities
-						      		</Typography>
-					      		</Paper>
-					      	</div>
-
-					      <GridList className={classes.gridList} cellHeight={'auto'} col={1} row={1}>
-
-					        {tileData.map(tile => (
-					          <GridListTile key={tile.img}>
-					            <img className={classes.uniimg} src={tile.img} alt={tile.title} />
-					            <GridListTileBar
-					              title={tile.title}
-					              classes={{
-					                root: classes.titleBar,
-					                title: classes.title,
-					              }}
-					              // actionIcon={
-					              //   <IconButton>
-					              //     <StarBorderIcon className={classes.title} />
-					              //   </IconButton>
-					              // }
-					            />
-					          </GridListTile>
-					        ))}
-					      </GridList>
-				    	</div>
+					</Grid>
+					<Grid item = {true} xs = {4}>
+						<div className={classes.root}>
+					    	<Typography variant = 'h6' >  Your Messages </Typography>
+							<Paper className={classes.paper}>
+								<Notifications/>
+							</Paper>
+						</div>
+					</Grid>
+					<Grid item = {true} xs = {4}>
+						<div className={classes.root}>
+					    	<Typography variant = 'h6' >  Your Deadlines </Typography>
+							<MyCalendar/>
+						</div>
 					</Grid>
 				</Grid>
-			</div>
-		
-		
-    	</Paper>
+			</div>	
 		)
 	}
 }

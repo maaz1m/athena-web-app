@@ -43,7 +43,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit,
   },
 });
 
@@ -53,6 +53,7 @@ class SearchUni extends React.Component{
     this.classes = this.props.classes
     this.socket = this.props.socket
     this.filter = this.props.filter
+    this.reset = this.props.reset
     this.state = {
       city: '',
       minSAT: '',
@@ -60,6 +61,7 @@ class SearchUni extends React.Component{
     } 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleReset = this.handleReset.bind(this)
   }
   handleChange(event){
     this.setState({[event.target.name]: event.target.value})
@@ -68,6 +70,10 @@ class SearchUni extends React.Component{
     this.filter(this.state)
     event.preventDefault() 
     // this.socket.emit('SearchUni', this.state)
+  }
+  handleReset(event){
+    this.reset()
+    event.preventDefault() 
   }
   render(){
       return (
@@ -95,7 +101,8 @@ class SearchUni extends React.Component{
             className={this.classes.textField}
             margin="normal"
             onChange = {this.handleChange}
-            InputProps ={{startAdornment: <InputAdornment position = 'start'> Rs </InputAdornment>}}
+            inputProps = {{min: 0, max: 1000000, step: 10000}}
+            InputProps ={{ startAdornment: <InputAdornment position = 'start'> Rs </InputAdornment>}}
             />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
@@ -106,6 +113,7 @@ class SearchUni extends React.Component{
             name = "minSAT"
             className={this.classes.textField}
             margin="normal"
+            inputProps = {{min: 0, max: 1600, step: 100}}
             onChange = {this.handleChange}
           />
           </FormControl>
@@ -118,6 +126,15 @@ class SearchUni extends React.Component{
             className={this.classes.submit}
           >
             Filter Universities
+          </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            color="default"
+            onClick= {this.handleReset}
+            className={this.classes.submit}
+          >
+            Reset Search
           </Button>
         </form>
       </Paper>

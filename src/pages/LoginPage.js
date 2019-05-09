@@ -42,20 +42,13 @@ class LoginPage extends React.Component{
 	render(){
 		const { classes } = this.props
 		return (
-			<Paper className={classes.paperContainer}>
 			<Grid container = {true}>
-				<Grid item = {true} xs = {6}>
-					<Typography className = {classes.heading}component="h2" variant="h1">
-	        			Welcome to Athena
-	      			</Typography>
-				</Grid>
-				<Grid item = {true} xs = {6}>
+				<Grid item = {true} xs = {12}>
 					<Fade in = {true}>
 						<Login/>
 					</Fade>
 				</Grid>
 			</Grid>
-			</Paper>
 		)
 	}
 }

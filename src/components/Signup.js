@@ -57,9 +57,11 @@ class Signup extends React.Component{
       email: '',
       displayName: '',
       password: '',
+      password: '',
       phoneNumber: '',
       universities: '',
-      major: ''
+      major: '',
+      confirmPassword: ''
     } 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -68,22 +70,27 @@ class Signup extends React.Component{
     this.setState({[event.target.name]: event.target.value})
   }
   handleSubmit(event){
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then( () =>{
-          var user = firebase.auth().currentUser
-          user.updateProfile({
-            displayName: this.state.displayName
-          })
-          firebase.database().ref('user/'+ user.uid).set(this.state)
-          router.renderHomePage()
-        }
-      )
-      .catch((error) => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert(error.message)
-      });
+    if(this.state.password = this.state.confirmPassword){
+      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then( () =>{
+            var user = firebase.auth().currentUser
+            user.updateProfile({
+              displayName: this.state.displayName
+            })
+            firebase.database().ref('user/'+ user.uid).set(this.state)
+            router.renderHomePage()
+          }
+        )
+        .catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(error.message)
+        });      
+    }
+    else{
+      alert('Passwords do not match')
+    }
 
 
     event.preventDefault()
@@ -112,6 +119,10 @@ class Signup extends React.Component{
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input onChange = {this.handleChange} name="password" type="password" id="password" autoComplete="current-password" />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+            <Input onChange = {this.handleChange} name="confirmPassword" type="confirmPassword" id="confirmPassword" autoComplete="current-password" />
           </FormControl>
           <Button
             type="submit"

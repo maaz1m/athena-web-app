@@ -20,7 +20,7 @@ import MajorIcon from '@material-ui/icons/School';
 import LogOutIcon from '@material-ui/icons/SubdirectoryArrowLeft';
 import * as router from '../router'
 import firebase from '../firebase'
-
+import logo from '../images/logo.png'
 const styles = {
   avatar: {
     margin: 10
@@ -37,6 +37,11 @@ const styles = {
   },
   fullList: {
     width: 'auto',
+  },
+  navLogo: {
+    maxWidth: '60px',
+    height: 'auto',
+    marginRight: '8px',
   }
 };
 
@@ -98,14 +103,15 @@ class Navbar extends React.Component{
             <IconButton onClick={this.toggleDrawer} className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
+            <img className = {classes.navLogo} src = {logo} ></img>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              A T H E N A
+              athena
             </Typography>
-            <Avatar alt = '' src='https://cdn-images-1.medium.com/max/2600/1*gBQxShAkxBp_YPb14CN0Nw.jpeg' className = {classes.avatar}></Avatar>
+            <Avatar alt = '' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' className = {classes.avatar}></Avatar>
           </Toolbar>
 
         </AppBar>
-        <Drawer open={this.state.open} onClose={this.toggleDrawer}>
+        <Drawer open={this.state.open} onClose={this.toggleDrawer} >
           <div
             tabIndex={0}
             role="button"
