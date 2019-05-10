@@ -7,6 +7,8 @@ import LandingPage from './pages/LandingPage'
 import Loading from './components/Loading'
 import SearchUniversityPage from './pages/SearchUniversityPage'
 import HomePage from './pages/HomePage'
+import ProfilePage from './pages/ProfilePage'
+
 import firebase from './firebase'
 
 
@@ -41,5 +43,8 @@ const renderQuizPage = ()=>{
 const renderLandingPage = ()=>{
 	ReactDOM.render(<LandingPage/> , container)
 }
+const renderProfilePage = ()=>{
+	ReactDOM.render(<ProfilePage/> , container)
+}
 
-export {renderSignupPage, renderLoginPage, renderSearchUniversityPage, renderQuizPage, renderHomePage, renderLandingPage}
+export {renderSignupPage, renderLoginPage, renderSearchUniversityPage, renderQuizPage, renderHomePage, renderLandingPage, renderProfilePage}

@@ -9,7 +9,7 @@ import background from './images/background.jpg';
 
 document.body.style = `background-image: url(${background});`;
 
-router.renderHomePage()
+router.renderProfilePage()
 
 
 
