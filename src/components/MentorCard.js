@@ -13,7 +13,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import skype from '../images/skype.png'
+import gmail from '../images/gmail.png'
+import number from '../images/caller.png'
 
 
 const styles = theme => ({
@@ -27,8 +29,13 @@ const styles = theme => ({
     marginRight: 'auto'
   },
   media: {
-    height: 140,
+    height: 250,
   },
+  img: {
+    width: 'auto',
+    height: '25px',
+    marginRight: '10px',
+  }
 });
 
 
@@ -59,8 +66,8 @@ class MentorCard extends React.Component{
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image="http://www.jennehill.com/images/medium/bfde189db9dad542cc54cac29d6160dc-800x500.jpg"
-            title="Image"
+            image={this.state.data.img}
+
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
@@ -88,8 +95,20 @@ class MentorCard extends React.Component{
           <DialogTitle id="alert-dialog-title">{"Mentor Details"}</DialogTitle>
           <DialogContent>
 
+          <Typography gutterBottom variant="p" component="h3" color='default'>
+          <img src={gmail} className = {classes.img}/>
+          {this.state.data.email}
+          </Typography>
 
+          <Typography gutterBottom variant="p" component="h3" color='default'>
+          <img src={skype} className = {classes.img}/>
+          {this.state.data.skype}
+          </Typography> 
 
+          <Typography gutterBottom variant="p" component="h3" color='default'>
+          <img src={number} className = {classes.img}/>
+          {this.state.data.number}
+          </Typography>
 
           </DialogContent>
           <DialogActions>
