@@ -107,7 +107,7 @@ class Navbar extends React.Component{
             <Typography variant="h6" color="inherit" className={classes.grow}>
               athena
             </Typography>
-            <Avatar alt = '' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' className = {classes.avatar}></Avatar>
+            <Avatar onClick={router.renderProfilePage} alt = '' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' className = {classes.avatar}></Avatar>
           </Toolbar>
 
         </AppBar>

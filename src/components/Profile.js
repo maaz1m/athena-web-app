@@ -16,6 +16,8 @@ import socket from '../socket'
 import firebase from '../firebase'
 import * as router from '../router'
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 
 const styles = theme => ({
@@ -31,11 +33,11 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 20,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -60,20 +62,29 @@ const styles = theme => ({
   },
 });
 
+const majors = 
+      [
+      {name: 'Engineering'},
+      {name: 'Medicine'},
+      {name: 'Business'},
+      {name: 'Accounting'},
+      {name: 'Finance'},
+      {name: 'Economics'},
+      {name: 'Natural Science'},
+      {name: 'Humanities'},
+      {name: 'Law'}
+      ]
 class Profile extends React.Component{
   constructor(props){
     super(props)
     this.style = this.props.classes
     this.socket = this.props.socket
     this.state = {
-      email: '',
-      displayName: '',
-      password: '',
-      password: '',
-      phoneNumber: '',
-      universities: '',
-      major: '',
-      confirmPassword: ''
+      dob: '',
+      field: '',
+      hSchool: '',
+      satScr: '',
+      
     } 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -82,27 +93,10 @@ class Profile extends React.Component{
     this.setState({[event.target.name]: event.target.value})
   }
   handleSubmit(event){
-    if(this.state.password = this.state.confirmPassword){
-      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then( () =>{
-            var user = firebase.auth().currentUser
-            user.updateProfile({
-              displayName: this.state.displayName
-            })
-            firebase.database().ref('user/'+ user.uid).set(this.state)
-            router.renderHomePage()
-          }
-        )
-        .catch((error) => {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert(error.message)
-        });      
-    }
-    else{
-      alert('Passwords do not match')
-    }
+    console.log(this.state)
+    var user = firebase.auth().currentUser
+    firebase.database().ref('user/'+ user.uid).update(this.state)
+
 
 
     event.preventDefault()
@@ -119,31 +113,59 @@ class Profile extends React.Component{
           Update Profile
         </Typography>
         <form className={this.style.form}>
-          <FormControl margin="normal" fullWidth>
-            <InputLabel htmlFor="displayName">Field Interested In</InputLabel>
-            <Input onChange = {this.handleChange} id="displayName" name="displayName" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" fullWidth>
-            <InputLabel htmlFor="email">High School Name</InputLabel>
-            <Input onChange = {this.handleChange} id="email" name="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" fullWidth>
-            <InputLabel htmlFor="password">Sat Score</InputLabel>
-            <Input onChange = {this.handleChange}  />
-          </FormControl>
+        <FormControl fullWidth>
+          <InputLabel htmlFor="field">Field</InputLabel>
+          <Select
+            value={this.state.field}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'field',
+              id: 'field',
+            }}
+          >
         
-          <form className={this.style.container} noValidate>
+            <MenuItem value={"Law"}>Law</MenuItem>
+            <MenuItem value={"Engineering"}>Engineering</MenuItem>
+            <MenuItem value={"Medicine"}>Medicine</MenuItem>
+            <MenuItem value={"Business"}>Business</MenuItem>
+            <MenuItem value={"Accounting"}>Accounting</MenuItem>
+            <MenuItem value={"Finance"}>Finance</MenuItem>
+            <MenuItem value={"Economics"}>Economics</MenuItem>
+            <MenuItem value={"Natural"}>Natural Science</MenuItem>
+            <MenuItem value={"Humanities"}>Humanities</MenuItem>
+          </Select>
+        </FormControl>
+
+          <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="hSchool">High School Name</InputLabel>
+            <Input onChange = {this.handleChange} id="hSchool" name="hSchool" autoFocus />
+          </FormControl>  
+          <FormControl fullWidth>
+            <TextField
+            id="standard-search"
+            label="Sat Score"
+            type="number"
+            name = "satScr"
+            inputProps = {{min: 0, max: 1600, step: 1}}
+            onChange = {this.handleChange}
+          />
+          </FormControl>
+          
           <TextField
-              id="date"
               label="Birthday"
               type="date"
               defaultValue="2017-05-24"
+               onChange = {this.handleChange}
+              id="dob"
+              name="dob"
+              value={this.state.dob}
               className={this.style.container}
               InputLabelProps={{
-                shrink: true,
+              shrink: true,
               }}
+           
             />
-          </form>
+
           <Button
             type="submit"
             fullWidth
@@ -151,6 +173,7 @@ class Profile extends React.Component{
             color="primary"
             onClick= {this.handleSubmit}
             className={this.style.submit}
+          
           >
             Save Changes
           </Button>
