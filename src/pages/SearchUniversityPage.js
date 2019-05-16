@@ -58,11 +58,11 @@ class SearchUniversityPage extends React.Component{
               var city = args.city
               for (var key in copyOfData){
                 let uni = copyOfData[key]
-                if (!isNaN(minSAT) && uni.minSAT > minSAT){
+                if (!isNaN(minSAT) && uni.minSAT < minSAT){
                   
                   delete copyOfData[key]
 
-                } else if (city != '' && uni.city != args.city){
+                } else if (city != '' && uni.city.toUpperCase() != args.city.toUpperCase()){
                   
                   delete copyOfData[key]
 

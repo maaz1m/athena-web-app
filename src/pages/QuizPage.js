@@ -27,33 +27,19 @@ const styles = theme => ({
 
 
 var questions = [
-	{'ques': 'I especially love working with children.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'Accounting']},
-	{'ques': 'I am interested in law, debate, government, and politics.', 'options': ['Yes', 'No'], 'cb': ['Law', 'Engineering']},
 	{'ques': 'I have a strong interest and ability in visual art.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Economics']},
-	{'ques': 'I am always reading a book or writing my own stories.', 'options': ['Yes', 'No'], 'cb': ['Literature', 'Finance']},
+	{'ques': 'I follow the latest political developments with interest.', 'options': ['Yes', 'No'], 'cb': ['Law', 'Engineering']},
 	{'ques': 'I like to experiment with better and faster ways of doing things.', 'options': ['Yes', 'No'], 'cb': ['Engineering', 'Literature']},
 	{'ques': 'I am concerned about the state of the environment and want to work to improve it.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'Accounting']},
 	{'ques': 'I am interested in helping bodies heal and rehabilitate.', 'options': ['Yes', 'No'], 'cb': ['Medicine', 'Business']},
-	{'ques': 'I am interested in technology and learning how computers work.', 'options': ['Yes', 'No'], 'cb': ['Engineering', 'Humanities']},
-	{'ques': 'I enjoy learning about different parts of the world.', 'options': ['Yes', 'No'], 'cb': ['History', 'Accounting']},
-	{'ques': 'I enjoy working with people, and I have strong verbal and written communication skills.', 'options': ['Yes', 'No'], 'cb': ['Literature', 'Natural Sciences']},
-	{'ques': 'I enjoy learning about how the human body and natural world work.', 'options': ['Yes', 'No'], 'cb': ['Medicine', 'Business']},
 	{'ques': 'I need the freedom to be creative and express myself.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Medicine']},
 	{'ques': 'I am interested in conflict resolution, criminal justice or mediation.', 'options': ['Yes', 'No'], 'cb': ['Law', 'Religion']},
 	{'ques': 'I am very ambitious, persuasive, and love coming up with my own ideas.', 'options': ['Yes', 'No'], 'cb': ['Business', 'History']},
 	{'ques': 'I like to work with my hands and be outdoors.', 'options': ['Yes', 'No'], 'cb': ['Engineering', 'Finance']},
-	{'ques': 'I like math and figuring out how things work.', 'options': ['Yes', 'No'], 'cb': ['Accounting', 'Literature']},
-	{'ques': 'I enjoy learning about languages.', 'options': ['Yes', 'No'], 'cb': ['Literature', 'Natural Sciences']},
 	{'ques': 'I am interested in science and enjoy helping people.', 'options': ['Yes', 'No'], 'cb': ['Natural Sciences', 'Finance']},
-	{'ques': 'I enjoy performing as an actor, or working behind the scenes on theatrical productions.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Natural Science']},
 	{'ques': 'I am good with numbers and am detail-oriented.', 'options': ['Yes', 'No'], 'cb': ['Accounting', 'Law']},
-	{'ques': 'I like to sing and/or play musical instruments.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Religion']},
 	{'ques': 'I want to work with people on the margins of society or who have been oppressed.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'Business']},
-	{'ques': 'I am interested in graphic and/or Web design.', 'options': ['Yes', 'No'], 'cb': ['CS', 'Religion']},
-	{'ques': 'I like to offer advice to others.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'CS']},
 	{'ques': 'I am interested in intellectual ideas, including those that are philosophical or religious.', 'options': ['Yes', 'No'], 'cb': ['Religion', 'CS']},
-	{'ques': 'I am interested in filmmaking and media production.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Medicine']},
-	{'ques': 'I love to solve technical problems', 'options': ['Yes', 'No'], 'cb': ['CS', 'History']}
 ]
 
 
@@ -61,7 +47,7 @@ var questions = [
 
 const RadarMap = (props) => {
 	return (
-		<RadarChart cy = {200} outerRadius={150} width={550} height={350} data={props.data}>
+		<RadarChart cy = {200} outerRadius={150} width={550} height={380} data={props.data}>
 	        <PolarGrid />
 	        <PolarAngleAxis dataKey="name" />
 	        <PolarRadiusAxis domain ={[0,5]}/>
@@ -88,16 +74,21 @@ class QuizPage extends React.Component{
 		super(props)
 		this.state = {
 			question: questions[0],
-		 	majorPts: [
+			majorPts: [
 		  	{name: 'Engineering', pts: 1},
 			{name: 'Medicine', pts: 1},
 			{name: 'Business', pts: 1},
 			{name: 'Accounting', pts: 1},
 			{name: 'Finance', pts: 1},
 			{name: 'Economics', pts: 1},
-			{name: 'Natural Science', pts: 1},
+			{name: 'Natural Sciences', pts: 1},
 			{name: 'Humanities', pts: 1},
-			{name: 'Law', pts: 1}
+			{name: 'Law', pts: 1},
+			{name: 'Art', pts: 1},
+			{name: 'Religion', pts: 1},
+			{name: 'History', pts: 1},
+			{name: 'Literature', pts: 1},
+			{name: 'CS', pts: 1}
 			]
 		}
 		

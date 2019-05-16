@@ -97,19 +97,19 @@ class MentorCard extends React.Component{
           <DialogTitle id="alert-dialog-title">{"Mentor Details"}</DialogTitle>
           <DialogContent>
 
-            <Typography gutterBottom variant="p" component="h3" color='default'>
+            <Typography variant="h5" component="p" color='default'>
             <img src={gmail} className = {classes.img}/>
-            {' ' + this.state.data.email}
+            {'  ' + this.state.data.email}
             </Typography>
 
-            <Typography gutterBottom variant="p" component="h3" color='default'>
+            <Typography variant="h5" component="p" color='default'>
             <img src={skype} className = {classes.img}/>
-            {' ' + this.state.data.skype}
+            {'  ' + this.state.data.skype}
             </Typography> 
 
-            <Typography gutterBottom variant="p" component="h3" color='default'>
+            <Typography variant="h5" component="p" color='default'>
             <img src={number} className = {classes.img}/>
-            {' ' + this.state.data.number}
+            {'  ' + this.state.data.number}
             </Typography>
 
           </DialogContent>

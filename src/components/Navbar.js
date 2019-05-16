@@ -18,6 +18,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import HomeGroupIcon from '@material-ui/icons/Search';
 import MajorIcon from '@material-ui/icons/School';
 import LogOutIcon from '@material-ui/icons/SubdirectoryArrowLeft';
+import MentorIcon from '@material-ui/icons/SupervisorAccount';
 import * as router from '../router'
 import firebase from '../firebase'
 import logo from '../images/logo.png'
@@ -45,6 +46,19 @@ const styles = {
     marginRight: '8px',
   }
 };
+const getName = ()=>{
+  var fb = firebase.auth()
+
+  if(fb){
+    var user = fb.currentUser
+    if(user){
+      return user.displayName
+    }
+  }else{
+    return ''
+  }
+
+}
 
 const signOut = ()=>{
   firebase.auth().signOut().then(()=>{
@@ -84,13 +98,13 @@ class Navbar extends React.Component{
         <List>
           <ListItem button key={'Major Quiz'}  onClick = {router.renderQuizPage} >
             <ListItemIcon><MajorIcon /></ListItemIcon>
-            <ListItemText primary={'Major Quiz'} />
+            <ListItemText primary={'Find My Major'} />
           </ListItem>
         </List>
         <List>
           <ListItem button key={'Mentors'}  onClick = {router.renderMentorPage} >
-            <ListItemIcon><MajorIcon /></ListItemIcon>
-            <ListItemText primary={'Mentors'} />
+            <ListItemIcon><MentorIcon /></ListItemIcon>
+            <ListItemText primary={'View Mentors'} />
           </ListItem>
         </List>
         <Divider />
@@ -114,6 +128,10 @@ class Navbar extends React.Component{
             <Typography variant="h6" color="inherit" className={classes.grow}>
               athena
             </Typography>
+            <Typography variant="h6" color="inherit">
+              {getName()}
+            </Typography>
+
             <Avatar onClick={router.renderProfilePage} alt = '' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' className = {classes.avatar}></Avatar>
           </Toolbar>
 

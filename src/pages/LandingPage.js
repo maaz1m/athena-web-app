@@ -28,9 +28,8 @@ const styles = theme => ({
     lineHeight: "60px",
   },
 	paperContainer: {
-        backgroundSize: 'auto',
+        height: '800px',
         backgroundImage: `url(${background})`,
-        backgroundRepeat: 'no-repeat',
         paddingTop: theme.spacing.unit * 2,
       	paddingBottom: theme.spacing.unit * 2,
     },

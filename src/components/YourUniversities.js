@@ -38,54 +38,40 @@ class YourUniversities extends React.Component {
       tileData: [],
       present: false,
     }
-    // var fb = firebase.auth()
+  }
 
-    // if(fb){
-    //   var user = fb.currentUser
-    //   if(user){
-    //     firebase.database().ref('user/'+ user.uid + '/universities')
-    //     .once('value').then(snapshot =>{
-    //       const data = snapshot.val()
-    //       var temp = []
-    //       for(var key in data)
-    //       {
-    //         temp.push({
-    //            img: data[key].img,
-    //            title: data[key].name,
-    //          })
-    //       }
-    //       console.log(temp)
-    //       if(temp.length > 0){
-    //         this.setState({tileData: temp, present: true})
-    //       }
-    //     }).catch(error =>{})        
-    //   }      
-    // }
+  componentDidMount(){
 
+        var fb = firebase.auth()
 
-
-    firebase.database().ref('uni') 
-      .once('value').then(snapshot =>{
-        const data = snapshot.val()
-        var temp = []
-        for(var key in data)
-        {
-          temp.push({
-             img: data[key].img,
-             title: data[key].name,
-           })
+        if(fb){
+          var user = fb.currentUser
+          if(user){
+            firebase.database().ref('user/'+ user.uid + '/universities')
+            .on('value', snapshot =>{
+              const data = snapshot.val()
+              var temp = []
+              for(var key in data)
+              {
+                temp.push({
+                   img: data[key].img,
+                   title: data[key].name,
+                 })
+              }
+              if(temp.length > 0){
+                this.setState({tileData: temp, present: true})
+              }
+            })        
+          }      
         }
-        this.setState({tileData: temp, present: true})
-      }).catch(error =>{
-        console.log(error)
-    })
+
 
 
   }
 
   render() {
     const { classes } = this.props;
-    if(this.state.present){      
+    if(this.state.tileData.length > 0){      
       return (
         <div className={classes.root}>
           <GridList cellHeight={180} className={classes.gridList}>
@@ -96,11 +82,6 @@ class YourUniversities extends React.Component {
                 <img src={tile.img} alt={tile.title} />
                 <GridListTileBar
                   title={tile.title}
-                  actionIcon={
-                    <IconButton className={classes.icon}>
-                      <InfoIcon />
-                    </IconButton>
-                  }
                 />
               </GridListTile>
             ))}
