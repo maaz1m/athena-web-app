@@ -63,9 +63,6 @@ class HomePage extends React.Component{
 		return (
 			<div>
 		    	<Navbar/>
-				<Typography className = {classes.greeting} component="h2" variant="h3">
-        			Hi, {this.name ? this.name.split(' ')[0] : ''}
-      			</Typography>
       			<Grid container = {true}>
 					<Grid item = {true} xs = {4}>
 

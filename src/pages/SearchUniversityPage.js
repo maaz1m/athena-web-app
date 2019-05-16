@@ -86,8 +86,8 @@ class SearchUniversityPage extends React.Component{
                 this.setState({data: data})
                 var user = firebase.auth().currentUser
                 var uni = {}
-                uni[id] = this.allUnis[id]
-                firebase.database().ref('user/'+ user.uid + '/universities').set(uni)
+                uni[id] = JSON.parse(JSON.stringify(this.allUnis[id]))
+                firebase.database().ref('user/'+ user.uid + '/universities').update(uni)
                 delete this.allUnis[id]
                 this.setState({open: true})
               }

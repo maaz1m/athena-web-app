@@ -8,6 +8,8 @@ import Loading from './components/Loading'
 import SearchUniversityPage from './pages/SearchUniversityPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
+import MentorPage from './pages/MentorPage'
+import SuccessMsg from './pages/SuccessMsg'
 
 import firebase from './firebase'
 
@@ -43,8 +45,14 @@ const renderQuizPage = ()=>{
 const renderLandingPage = ()=>{
 	ReactDOM.render(<LandingPage/> , container)
 }
+const renderMentorPage = ()=>{
+	ReactDOM.render(<MentorPage/> , container)
+}
+const renderSuccessMsg = (m)=>{
+	ReactDOM.render(<SuccessMsg msg={m}/> , container)
+}
 const renderProfilePage = ()=>{
 	ReactDOM.render(<ProfilePage/> , container)
 }
 
-export {renderSignupPage, renderLoginPage, renderSearchUniversityPage, renderQuizPage, renderHomePage, renderLandingPage, renderProfilePage}
+export {renderSignupPage, renderLoginPage, renderSearchUniversityPage, renderQuizPage, renderHomePage, renderLandingPage, renderProfilePage, renderMentorPage, renderSuccessMsg}

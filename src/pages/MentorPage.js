@@ -38,7 +38,7 @@ class MentorPage extends React.Component{
         uni: 'University of Central Punjab',
         description: 'I’m a freelance multi-disciplinary graphic designer who’s delivered creative and engaging solutions across brand identity, print, packaging, and digital media. In 2013, my online brand campaign for the Dorsey Children’s Hospital won a GDUSA award, one of the most prestigious honors in the graphic design industry. My work has also been featured in Creatique Bloq, Compound Magazine, and on the Creative Review blog.',
         skype: 'zain.skype.com',
-        number: '0213i76896',
+        number: '021376896',
         email: 'zain@gmail.com',},
 
 		{name: 'Salman Khurshid',

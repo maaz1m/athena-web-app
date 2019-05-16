@@ -15,7 +15,14 @@ const half = {
 }
 
 const styles = theme => ({
+	chartbg: {
+		width: '550px',
+		marginTop: '20px',
+		marginLeft: '50px',
+		height: '390px',
+		opacity: '0.9',
 
+	}
 });
 
 
@@ -51,7 +58,7 @@ var questions = [
 
 const RadarMap = (props) => {
 	return (
-		<RadarChart cx={300} cy={250} outerRadius={150} width={550} height={500} data={props.data}>
+		<RadarChart cy = {200} outerRadius={150} width={550} height={350} data={props.data}>
 	        <PolarGrid />
 	        <PolarAngleAxis dataKey="name" />
 	        <PolarRadiusAxis domain ={[0,5]}/>
@@ -123,7 +130,9 @@ class QuizPage extends React.Component{
 						}}/>
 					</Grid>
 					<Grid item = {true} xs = {6} >
+						<Paper square elevation = {0} className = {classes.chartbg}>
 						<RadarMap data = {this.state.majorPts.slice()} />
+						</Paper>
 					</Grid>
 				</Grid>	
 			</div>

@@ -27,6 +27,7 @@ const styles = {
   },
   root: {
     flexGrow: 1,
+    marginBottom: '10px',
   },
   grow: {
     flexGrow: 1,
@@ -84,6 +85,12 @@ class Navbar extends React.Component{
           <ListItem button key={'Major Quiz'}  onClick = {router.renderQuizPage} >
             <ListItemIcon><MajorIcon /></ListItemIcon>
             <ListItemText primary={'Major Quiz'} />
+          </ListItem>
+        </List>
+        <List>
+          <ListItem button key={'Mentors'}  onClick = {router.renderMentorPage} >
+            <ListItemIcon><MajorIcon /></ListItemIcon>
+            <ListItemText primary={'Mentors'} />
           </ListItem>
         </List>
         <Divider />

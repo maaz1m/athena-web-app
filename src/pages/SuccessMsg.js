@@ -46,7 +46,6 @@ class Profile extends React.Component{
   constructor(props){
     super(props)
      this.style = this.props.classes
-
     
   }
   render(){
@@ -56,7 +55,7 @@ class Profile extends React.Component{
         <Navbar/>
 
         <Typography component="h1" variant="h2" className={classes.paper}>
-          Update Profile Successful!
+          {this.props.msg}
         </Typography>
 
          <Button variant='contained' color='primary' className={classes.buttonContainer} onClick={router.renderHomePage} >

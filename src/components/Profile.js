@@ -93,14 +93,12 @@ class Profile extends React.Component{
     this.setState({[event.target.name]: event.target.value})
   }
   handleSubmit(event){
-    console.log(this.state)
     var user = firebase.auth().currentUser
     firebase.database().ref('user/'+ user.uid).update(this.state)
-
+    router.renderSuccessMsg('Profile updated successfully')
 
 
     event.preventDefault()
-    //console.log(this.state, 'submitted')
   }
   render(){
       return (
