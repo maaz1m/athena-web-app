@@ -8,6 +8,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import logo from '../logo.png'
+import firebase from '../firebase'
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -25,14 +27,28 @@ const styles = theme => ({
 class Notifications extends React.Component {
   constructor(props){
     super(props)
-    this.notifs = props.notifs
-    this.notifs = [
-    {name: 'Team Athena', msg: 'A very warm welcome from all of us here at Athena', img:'https://png.pngtree.com/element_pic/17/01/07/9e841a6c76489bab75e9311b5d8c5ca3.jpg' }
-    ]
+
+    this.state = {
+      notifs: []
+    }
+    // this.statenotifs = [
+    // {name: 'Team Athena', msg: 'A very warm welcome from all of us here at Athena', img:'https://png.pngtree.com/element_pic/17/01/07/9e841a6c76489bab75e9311b5d8c5ca3.jpg' }
+    // ]
   }
+  componentDidMount(){
+    firebase.database().ref('notifs').on('value', snapshot =>{
+      var data = snapshot.val()
+      var temp = []
+      for (var key in data){
+        temp.push({name: data[key].name, img: data[key].img, msg: data[key].msg,})
+      }
+      this.setState({notifs: temp})
+    })
+  }
+
   render(){
     const { classes } = this.props;
-    var list = this.notifs.map( notif =>(<ListItem key = {notif.name} alignItems="flex-start">
+    var list = this.state.notifs.map( notif =>(<ListItem key = {notif.name} alignItems="flex-start">
           <ListItemAvatar>
             <Avatar src={notif.img} />
           </ListItemAvatar>
