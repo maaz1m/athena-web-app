@@ -34,6 +34,9 @@ const styles = theme => ({
       marginRight: 'auto'
     },
   },
+  question: {
+    height: '30px',
+  },
   paper: {
     opacity: '0.9',
     marginTop: theme.spacing.unit * 8,
@@ -48,26 +51,36 @@ const styles = theme => ({
 });
 
 class Question extends React.Component {
-  state = {};
 
-  handleChange = event => {
-    if (this.state === {}){
-      this.setState({ value: event.target.value });
+  constructor(props){
+    super(props)
+    this.state = {
+      value: '',  
     }
-      this.props.change(event.target.value)
+    this.handleChange = this.handleChange.bind(this)
+  }
 
-  };
+  handleChange(event){
+    console.log(event.target.value)
+    this.setState({ value: event.target.value });
+    var val = event.target.value
+    setTimeout(()=>{
+      this.props.change(val)
+      this.setState({ value: ''});
+    }, 500)
+    
+  }
 
   render() {
     const { classes } = this.props;
     var question = this.props.question.ques
     var options = this.props.question.options.map(op => (
-      <FormControlLabel value= {op} control={<Radio />} label={op} />
+      <FormControlLabel checked = {false} value= {op} control={<Radio />} label={op} />
     ))
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <Typography component="h1" variant="h6">
+          <Typography component="h1" variant="h6" className={classes.question} >
             {question}
           </Typography>
 
@@ -76,6 +89,7 @@ class Question extends React.Component {
               aria-label="Question"
               className={classes.group}
               onClick={this.handleChange}
+              value = {this.state.value}
             >  
             {options}
             </RadioGroup>

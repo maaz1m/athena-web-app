@@ -27,34 +27,37 @@ const styles = theme => ({
 
 
 var questions = [
-	{'ques': 'I especially love working with children.', 'options': ['Yes', 'No'], 'cb': ['Engineering', 'Medicine']},
-	{'ques': 'I am interested in law, debate, government, and politics.', 'options': ['Yes', 'No']},
-	{'ques': 'I have a strong interest and ability in visual art.', 'options': ['Yes', 'No']},
-	{'ques': 'I am always reading a book or writing my own stories.', 'options': ['Yes', 'No']},
-	{'ques': 'I like to experiment with better and faster ways of doing things.', 'options': ['Yes', 'No']},
-	{'ques': 'I am concerned about the state of the environment and want to work to improve it.', 'options': ['Yes', 'No']},
-	{'ques': 'I am interested in helping bodies heal and rehabilitate.', 'options': ['Yes', 'No']},
-	{'ques': 'I am interested in technology and learning how computers work.', 'options': ['Yes', 'No']},
-	{'ques': 'I enjoy learning about different parts of the world.', 'options': ['Yes', 'No']},
-	{'ques': 'I enjoy working with people, and I have strong verbal and written communication skills.', 'options': ['Yes', 'No']},
-	// {'ques': 'I enjoy learning about how the human body and natural world work.', 'options': ['Yes', 'No']},
-	// {'ques': 'I need the freedom to be creative and express myself.', 'options': ['Yes', 'No']},
-	// {'ques': 'I am interested in conflict resolution, criminal justice or mediation.', 'options': ['Yes', 'No']},
-	// {'ques': 'I am very ambitious, persuasive, and love coming up with my own ideas.', 'options': ['Yes', 'No']},
-	// {'ques': 'I like to work with my hands and be outdoors.', 'options': ['Yes', 'No']},
-	// {'ques': 'I like math and figuring out how things work.', 'options': ['Yes', 'No']},
-	// {'ques': 'I enjoy learning about languages.', 'options': ['Yes', 'No']},
-	// {'ques': 'I am interested in science and enjoy helping people.', 'options': ['Yes', 'No']},
-	// {'ques': 'I enjoy performing as an actor, or working behind the scenes on theatrical productions.', 'options': ['Yes', 'No']},
-	// {'ques': 'I am good with numbers and am detail-oriented.', 'options': ['Yes', 'No']},
-	// {'ques': 'I like to sing and/or play musical instruments.', 'options': ['Yes', 'No']},
-	// {'ques': 'I want to work with people on the margins of society or who have been oppressed.', 'options': ['Yes', 'No']},
-	// {'ques': 'I am interested in graphic and/or Web design.', 'options': ['Yes', 'No']},
-	// {'ques': 'I like to offer advice to others.', 'options': ['Yes', 'No']},
-	// {'ques': 'I am interested in intellectual ideas, including those that are philosophical or religious.', 'options': ['Yes', 'No']},
-	// {'ques': 'I am interested in filmmaking and media production.', 'options': ['Yes', 'No']},
-	// {'ques': 'I love sports', 'options': ['Yes', 'No']}
+	{'ques': 'I especially love working with children.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'Accounting']},
+	{'ques': 'I am interested in law, debate, government, and politics.', 'options': ['Yes', 'No'], 'cb': ['Law', 'Engineering']},
+	{'ques': 'I have a strong interest and ability in visual art.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Economics']},
+	{'ques': 'I am always reading a book or writing my own stories.', 'options': ['Yes', 'No'], 'cb': ['Literature', 'Finance']},
+	{'ques': 'I like to experiment with better and faster ways of doing things.', 'options': ['Yes', 'No'], 'cb': ['Engineering', 'Literature']},
+	{'ques': 'I am concerned about the state of the environment and want to work to improve it.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'Accounting']},
+	{'ques': 'I am interested in helping bodies heal and rehabilitate.', 'options': ['Yes', 'No'], 'cb': ['Medicine', 'Business']},
+	{'ques': 'I am interested in technology and learning how computers work.', 'options': ['Yes', 'No'], 'cb': ['Engineering', 'Humanities']},
+	{'ques': 'I enjoy learning about different parts of the world.', 'options': ['Yes', 'No'], 'cb': ['History', 'Accounting']},
+	{'ques': 'I enjoy working with people, and I have strong verbal and written communication skills.', 'options': ['Yes', 'No'], 'cb': ['Literature', 'Natural Sciences']},
+	{'ques': 'I enjoy learning about how the human body and natural world work.', 'options': ['Yes', 'No'], 'cb': ['Medicine', 'Business']},
+	{'ques': 'I need the freedom to be creative and express myself.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Medicine']},
+	{'ques': 'I am interested in conflict resolution, criminal justice or mediation.', 'options': ['Yes', 'No'], 'cb': ['Law', 'Religion']},
+	{'ques': 'I am very ambitious, persuasive, and love coming up with my own ideas.', 'options': ['Yes', 'No'], 'cb': ['Business', 'History']},
+	{'ques': 'I like to work with my hands and be outdoors.', 'options': ['Yes', 'No'], 'cb': ['Engineering', 'Finance']},
+	{'ques': 'I like math and figuring out how things work.', 'options': ['Yes', 'No'], 'cb': ['Accounting', 'Literature']},
+	{'ques': 'I enjoy learning about languages.', 'options': ['Yes', 'No'], 'cb': ['Literature', 'Natural Sciences']},
+	{'ques': 'I am interested in science and enjoy helping people.', 'options': ['Yes', 'No'], 'cb': ['Natural Sciences', 'Finance']},
+	{'ques': 'I enjoy performing as an actor, or working behind the scenes on theatrical productions.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Natural Science']},
+	{'ques': 'I am good with numbers and am detail-oriented.', 'options': ['Yes', 'No'], 'cb': ['Accounting', 'Law']},
+	{'ques': 'I like to sing and/or play musical instruments.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Religion']},
+	{'ques': 'I want to work with people on the margins of society or who have been oppressed.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'Business']},
+	{'ques': 'I am interested in graphic and/or Web design.', 'options': ['Yes', 'No'], 'cb': ['CS', 'Religion']},
+	{'ques': 'I like to offer advice to others.', 'options': ['Yes', 'No'], 'cb': ['Humanities', 'CS']},
+	{'ques': 'I am interested in intellectual ideas, including those that are philosophical or religious.', 'options': ['Yes', 'No'], 'cb': ['Religion', 'CS']},
+	{'ques': 'I am interested in filmmaking and media production.', 'options': ['Yes', 'No'], 'cb': ['Art', 'Medicine']},
+	{'ques': 'I love to solve technical problems', 'options': ['Yes', 'No'], 'cb': ['CS', 'History']}
 ]
+
+
+
 
 const RadarMap = (props) => {
 	return (
@@ -62,7 +65,7 @@ const RadarMap = (props) => {
 	        <PolarGrid />
 	        <PolarAngleAxis dataKey="name" />
 	        <PolarRadiusAxis domain ={[0,5]}/>
-	        <Radar name="User" dataKey="pts" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+	        <Radar name="User" dataKey="pts" stroke="#8884d8" fill="#8884d8" fillOpacity={0.9} />
 		</RadarChart>
 	)
 
@@ -120,10 +123,15 @@ class QuizPage extends React.Component{
 									}
 									router.renderSuccessMsg(maxMjr + ' is the choice for you !')
 								} else{
+									var copyOf = this.state.majorPts
+									var index = (selected == 'Yes') ? 0 : 1;
+									var major = questions[this.index].cb[index];
+									for (var i = 0; i < copyOf.length; i++) {
+										if (copyOf[i].name === major){
+											copyOf[i].pts+=1;
+										}
+									}
 									this.index+=1
-									var copyOf = this.state.majorPts 
-									var majorIndex = Math.floor(Math.random()*8)
-									copyOf[majorIndex].pts += 1;
 									this.setState({'question': questions[this.index], 'majorPts': copyOf})
 								}
 							}
@@ -131,7 +139,7 @@ class QuizPage extends React.Component{
 					</Grid>
 					<Grid item = {true} xs = {6} >
 						<Paper square elevation = {0} className = {classes.chartbg}>
-						<RadarMap data = {this.state.majorPts.slice()} />
+							<RadarMap data = {this.state.majorPts.slice()} />
 						</Paper>
 					</Grid>
 				</Grid>	
