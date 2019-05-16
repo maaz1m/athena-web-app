@@ -82,11 +82,12 @@ class SearchUniversityPage extends React.Component{
 					<Grid item = {true} xs={8}>
 						<UniTable data = {this.state.data} add = { id =>{
                 var data = this.state.data
+                var uniToAdd = JSON.parse(JSON.stringify(data[id])) 
                 delete data[id]
                 this.setState({data: data})
                 var user = firebase.auth().currentUser
                 var uni = {}
-                uni[id] = JSON.parse(JSON.stringify(this.allUnis[id]))
+                uni[id] = uniToAdd
                 firebase.database().ref('user/'+ user.uid + '/universities').update(uni)
                 delete this.allUnis[id]
                 this.setState({open: true})
