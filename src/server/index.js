@@ -3,14 +3,14 @@ const path = require('path');
 const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server);
-const admin = require("firebase-admin");
+// const admin = require("firebase-admin");
 
-const serviceAccount = require("./serviceAccountKey.json");
+// const serviceAccount = require("./serviceAccountKey.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://athena-56ba2.firebaseio.com"
-});
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://athena-56ba2.firebaseio.com"
+// });
 
 const PORT = process.env.PORT || 8000;
 
